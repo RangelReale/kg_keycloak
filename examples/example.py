@@ -55,6 +55,9 @@ keycloak_config = KeycloakBuilder(kubragen=kg, options=KeycloakOptions({
             'user': 'test@example.com',
             'password': 'mypassword',
         },
+        'db': {
+            'vendor': 'POSTGRES',
+        }
     },
     'kubernetes': {
         'resources': {

@@ -1,14 +1,15 @@
-from typing import List, Optional, Sequence, Any
+from typing import List, Optional
 
 from kubragen import KubraGen
 from kubragen.builder import Builder
 from kubragen.data import ValueData
 from kubragen.exception import InvalidNameError
 from kubragen.helper import QuotedStr
-from kubragen.kdata import IsKData, KData_Secret
+from kubragen.kdata import IsKData
 from kubragen.kdatahelper import KDataHelper_Env, KDataHelper_Volume
 from kubragen.object import ObjectItem, Object
 from kubragen.types import TBuild, TBuildItem
+
 from .option import KeycloakOptions
 
 
@@ -185,7 +186,7 @@ class KeycloakBuilder(Builder):
                             'volumes': [
                                 KDataHelper_Volume.info(base_value={
                                     'name': 'keycloak-realm-volume',
-                                }, kdata=self.option_get('config.realm_import'), default_value={
+                                }, kdata_value=self.option_get('config.realm_import'), default_value={
                                     'secret': {
                                         'secretName': self.object_name('config-secret'),
                                         'items': [{
@@ -201,7 +202,7 @@ class KeycloakBuilder(Builder):
                                 'env': [
                                     KDataHelper_Env.info(base_value={
                                         'name': 'KEYCLOAK_USER',
-                                    }, kdata=self.option_get('config.admin.user'), default_value={
+                                    }, value=self.option_get('config.admin.user'), default_value={
                                         'valueFrom': {
                                             'secretKeyRef': {
                                                 'name': self.object_name('config-secret'),
@@ -211,7 +212,7 @@ class KeycloakBuilder(Builder):
                                     }, disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'KEYCLOAK_PASSWORD',
-                                    }, kdata=self.option_get('config.admin.password'), default_value={
+                                    }, value=self.option_get('config.admin.password'), default_value={
                                         'valueFrom': {
                                             'secretKeyRef': {
                                                 'name': self.object_name('config-secret'),
@@ -225,28 +226,27 @@ class KeycloakBuilder(Builder):
                                     }, enabled=self.option_get('config.realm_import') is not None),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'DB_VENDOR',
-                                    }, kdata=self.option_get('config.db.vendor'), disable_if_none=True),
+                                    }, value=self.option_get('config.db.vendor'), disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'DB_ADDR',
-                                    }, kdata=self.option_get('config.db.addr'), disable_if_none=True),
+                                    }, value=self.option_get('config.db.addr'), disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'DB_PORT',
-                                    }, kdata=self.option_get('config.db.port'), default_value={
+                                    }, value=self.option_get('config.db.port'), default_value={
                                         'value': QuotedStr(self.option_get('config.db.port')),
                                     }, disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'DB_DATABASE',
-                                    }, kdata=self.option_get('config.db.database'), disable_if_none=True),
+                                    }, value=self.option_get('config.db.database'), disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'DB_SCHEMA',
-                                    }, kdata=self.option_get('config.db.schema'), disable_if_none=True),
+                                    }, value=self.option_get('config.db.schema'), disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'DB_USER',
-                                    }, kdata=self.option_get('config.db.user'), disable_if_none=True),
-
+                                    }, value=self.option_get('config.db.user'), disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'DB_PASSWORD',
-                                    }, kdata=self.option_get('config.db.password'), default_value={
+                                    }, value=self.option_get('config.db.password'), default_value={
                                         'valueFrom': {
                                             'secretKeyRef': {
                                                 'name': self.object_name('config-secret'),
@@ -256,7 +256,7 @@ class KeycloakBuilder(Builder):
                                     }, disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'PROXY_ADDRESS_FORWARDING',
-                                    }, kdata=self.option_get('config.proxy_address_forwarding'), default_value={
+                                    }, kdata_value=self.option_get('config.proxy_address_forwarding'), default_value={
                                         'value': QuotedStr('true' if self.option_get(
                                             'config.proxy_address_forwarding') is not False else 'false'),
                                     }, disable_if_none=True),
