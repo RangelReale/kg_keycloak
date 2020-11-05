@@ -14,7 +14,7 @@ from .option import KeycloakOptions
 
 class KeycloakBuilder(Builder):
     """
-    KeyCloak builder.
+    Keycloak builder.
 
     Based on `keycloak/keycloak-quickstarts <https://github.com/keycloak/keycloak-quickstarts/tree/latest/kubernetes-examples>`_.
 

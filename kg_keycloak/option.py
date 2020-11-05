@@ -8,7 +8,7 @@ from kubragen.options import Options
 
 class KeycloakOptions(Options):
     """
-    Options for the KeyCloak builder.
+    Options for the Keycloak builder.
 
     .. list-table::
         :header-rows: 1
@@ -88,7 +88,7 @@ class KeycloakOptions(Options):
     """
     def define_options(self):
         """
-        Declare the options for the KeyCloak builder.
+        Declare the options for the Keycloak builder.
 
         :return: The supported options
         """
