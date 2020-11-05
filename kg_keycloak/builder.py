@@ -202,7 +202,7 @@ class KeycloakBuilder(Builder):
                                 'env': [
                                     KDataHelper_Env.info(base_value={
                                         'name': 'KEYCLOAK_USER',
-                                    }, value=self.option_get('config.admin.user'), default_value={
+                                    }, kdata_value=self.option_get('config.admin.user'), default_value={
                                         'valueFrom': {
                                             'secretKeyRef': {
                                                 'name': self.object_name('config-secret'),
@@ -212,7 +212,7 @@ class KeycloakBuilder(Builder):
                                     }, disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'KEYCLOAK_PASSWORD',
-                                    }, value=self.option_get('config.admin.password'), default_value={
+                                    }, kdata_value=self.option_get('config.admin.password'), default_value={
                                         'valueFrom': {
                                             'secretKeyRef': {
                                                 'name': self.object_name('config-secret'),
@@ -246,7 +246,7 @@ class KeycloakBuilder(Builder):
                                     }, value=self.option_get('config.db.user'), disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'DB_PASSWORD',
-                                    }, value=self.option_get('config.db.password'), default_value={
+                                    }, kdata_value=self.option_get('config.db.password'), default_value={
                                         'valueFrom': {
                                             'secretKeyRef': {
                                                 'name': self.object_name('config-secret'),
