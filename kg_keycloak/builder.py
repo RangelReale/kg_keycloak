@@ -186,7 +186,7 @@ class KeycloakBuilder(Builder):
                             'volumes': [
                                 KDataHelper_Volume.info(base_value={
                                     'name': 'keycloak-realm-volume',
-                                }, value_if_data=self.option_get('config.realm_import'), default_value={
+                                }, value_if_kdata=self.option_get('config.realm_import'), default_value={
                                     'secret': {
                                         'secretName': self.object_name('config-secret'),
                                         'items': [{
@@ -202,7 +202,7 @@ class KeycloakBuilder(Builder):
                                 'env': [
                                     KDataHelper_Env.info(base_value={
                                         'name': 'KEYCLOAK_USER',
-                                    }, value_if_data=self.option_get('config.admin.user'), default_value={
+                                    }, value_if_kdata=self.option_get('config.admin.user'), default_value={
                                         'valueFrom': {
                                             'secretKeyRef': {
                                                 'name': self.object_name('config-secret'),
@@ -212,7 +212,7 @@ class KeycloakBuilder(Builder):
                                     }, disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'KEYCLOAK_PASSWORD',
-                                    }, value_if_data=self.option_get('config.admin.password'), default_value={
+                                    }, value_if_kdata=self.option_get('config.admin.password'), default_value={
                                         'valueFrom': {
                                             'secretKeyRef': {
                                                 'name': self.object_name('config-secret'),
@@ -246,7 +246,7 @@ class KeycloakBuilder(Builder):
                                     }, value=self.option_get('config.db.user'), disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'DB_PASSWORD',
-                                    }, value_if_data=self.option_get('config.db.password'), default_value={
+                                    }, value_if_kdata=self.option_get('config.db.password'), default_value={
                                         'valueFrom': {
                                             'secretKeyRef': {
                                                 'name': self.object_name('config-secret'),
@@ -256,7 +256,7 @@ class KeycloakBuilder(Builder):
                                     }, disable_if_none=True),
                                     KDataHelper_Env.info(base_value={
                                         'name': 'PROXY_ADDRESS_FORWARDING',
-                                    }, value_if_data=self.option_get('config.proxy_address_forwarding'), default_value={
+                                    }, value_if_kdata=self.option_get('config.proxy_address_forwarding'), default_value={
                                         'value': QuotedStr('true' if self.option_get(
                                             'config.proxy_address_forwarding') is not False else 'false'),
                                     }, disable_if_none=True),
