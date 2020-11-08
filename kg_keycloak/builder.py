@@ -80,7 +80,7 @@ class KeycloakBuilder(Builder):
 
         self._namespace = self.option_get('namespace')
 
-        self.object_names_update({
+        self.object_names_init({
             'config-secret': self.basename('-config-secret'),
             'service': self.basename(),
             'deployment': self.basename(),
