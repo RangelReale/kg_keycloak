@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Sequence
 
 from kubragen import KubraGen
 from kubragen.builder import Builder
@@ -65,12 +65,12 @@ class KeycloakBuilder(Builder):
 
     SOURCE_NAME = 'kg_keycloak'
 
-    BUILD_CONFIG: TBuild = 'config'
-    BUILD_SERVICE: TBuild = 'service'
+    BUILD_CONFIG = TBuild('config')
+    BUILD_SERVICE = TBuild('service')
 
-    BUILDITEM_CONFIG_SECRET: TBuildItem = 'config-secret'
-    BUILDITEM_DEPLOYMENT: TBuildItem = 'deployment'
-    BUILDITEM_SERVICE: TBuildItem = 'service'
+    BUILDITEM_CONFIG_SECRET = TBuildItem('config-secret')
+    BUILDITEM_DEPLOYMENT = TBuildItem('deployment')
+    BUILDITEM_SERVICE = TBuildItem('service')
 
     def __init__(self, kubragen: KubraGen, options: Optional[KeycloakOptions] = None):
         super().__init__(kubragen)
@@ -96,20 +96,20 @@ class KeycloakBuilder(Builder):
     def namespace(self):
         return self._namespace
 
-    def build_names(self) -> List[TBuild]:
+    def build_names(self) -> Sequence[TBuild]:
         return [self.BUILD_CONFIG, self.BUILD_SERVICE]
 
-    def build_names_required(self) -> List[TBuild]:
+    def build_names_required(self) -> Sequence[TBuild]:
         return [self.BUILD_CONFIG, self.BUILD_SERVICE]
 
-    def builditem_names(self) -> List[TBuildItem]:
+    def builditem_names(self) -> Sequence[TBuildItem]:
         return [
             self.BUILDITEM_CONFIG_SECRET,
             self.BUILDITEM_DEPLOYMENT,
             self.BUILDITEM_SERVICE,
         ]
 
-    def internal_build(self, buildname: TBuild) -> List[ObjectItem]:
+    def internal_build(self, buildname: TBuild) -> Sequence[ObjectItem]:
         if buildname == self.BUILD_CONFIG:
             return self.internal_build_config()
         elif buildname == self.BUILD_SERVICE:
@@ -117,7 +117,7 @@ class KeycloakBuilder(Builder):
         else:
             raise InvalidNameError('Invalid build name: "{}"'.format(buildname))
 
-    def internal_build_config(self) -> List[ObjectItem]:
+    def internal_build_config(self) -> Sequence[ObjectItem]:
         secret_data = {}
 
         if not IsKData(self.option_get('config.realm_import')):
@@ -158,7 +158,7 @@ class KeycloakBuilder(Builder):
 
         return ret
 
-    def internal_build_service(self) -> List[ObjectItem]:
+    def internal_build_service(self) -> Sequence[ObjectItem]:
         ret = [
             Object({
                 'apiVersion': 'apps/v1',
