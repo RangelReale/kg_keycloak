@@ -41,39 +41,39 @@ class KeycloakOptions(Options):
           - frontend url
           - str
           -
-        * - admin |rarr| user
+        * - config |rarr| admin |rarr| user
           - admin user name
           - str, :class:`KData_Value`, :class:`KData_ConfigMap`, :class:`KData_Secret`
           -
-        * - admin |rarr| password
+        * - config |rarr| admin |rarr| password
           - admin password
           - str, :class:`KData_Secret`
           -
-        * - db |rarr| vendor
+        * - config |rarr| db |rarr| vendor
           - DB vendor
           - str, :class:`KData_Value`, :class:`KData_ConfigMap`, :class:`KData_Secret`
           -
-        * - db |rarr| addr
+        * - config |rarr| db |rarr| addr
           - DB host address
           - str, :class:`KData_Value`, :class:`KData_ConfigMap`, :class:`KData_Secret`
           -
-        * - db |rarr| port
+        * - config |rarr| db |rarr| port
           - DB network port
           - str, :class:`KData_Value`, :class:`KData_ConfigMap`, :class:`KData_Secret`
           -
-        * - db |rarr| database
+        * - config |rarr| db |rarr| database
           - DB database name
           - str, :class:`KData_Value`, :class:`KData_ConfigMap`, :class:`KData_Secret`
           - ```True```
-        * - db |rarr| schema
+        * - config |rarr| db |rarr| schema
           - DB schema
           - str, :class:`KData_Value`, :class:`KData_ConfigMap`, :class:`KData_Secret`
           -
-        * - db |rarr| user
+        * - config |rarr| db |rarr| user
           - DB user
           - str, :class:`KData_Value`, :class:`KData_ConfigMap`, :class:`KData_Secret`
           -
-        * - db |rarr| password
+        * - config |rarr| db |rarr| password
           - DB password
           - str, :class:`KData_Secret`
           -
